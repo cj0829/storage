@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="gbk" ?>  
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration debug="false"
+	xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+
+
+	<!-- 配置程序运行时的日志输出，输出到文件，并且文件按天存放 -->
+	<appender name="INFO" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="Encoding" value="UTF-8" />
+		<!-- 事件日志文件存放在log/info目录下 -->
+		<param name="File" value="logs/info.log" />
+		<!-- 重启后追加到旧文件 -->
+		<param name="Append" value="true" />
+		<!-- 按天分割文件 -->
+		<!-- param name="DatePattern" value=".yyyy-MM-dd" / -->
+		<!-- 配置日志格式 -->
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%c %d -- %p -- %m%n" />
+		</layout>
+		<!-- 配置过滤器，此文件只输出INFO信息 -->
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="INFO" />
+			<param name="LevelMax" value="INFO" />
+		</filter>
+	</appender>
+
+
+	<!-- 配置出现重量级的异常时的日志输出，输出到文件，并且文件按天存放 -->
+	<appender name="ERROR" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="Encoding" value="UTF-8" />
+		<!-- 错误日志文件存放在log/error目录下 -->
+		<param name="File" value="logs/error.log" />
+		<!-- 重启后追加到旧文件 -->
+		<param name="Append" value="true" />
+		<!-- 按天分割文件 -->
+		<!-- param name="DatePattern" value=".yyyy-MM-dd" / -->
+		<!-- 配置日志格式 -->
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd hh:mm:ss}:%p %c:%L - %m%n" />
+		</layout>
+		<!-- 配置过滤器，此文件只输出错误信息 -->
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="ERROR" />
+			<param name="LevelMax" value="ERROR" />
+		</filter>
+	</appender>
+
+
+
+	<root><!-- 设置接收所有输出的通道 -->
+		<level value="INFO" />
+		<!-- 对应上面的appender -->
+		<appender-ref ref="ERROR" />
+		<appender-ref ref="INFO" />
+	</root>
+
+
+</log4j:configuration>  

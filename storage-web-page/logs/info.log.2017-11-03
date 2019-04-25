@@ -1,0 +1,6 @@
+org.hibernate.Version 2017-11-03 12:31:06,352 -- INFO -- HHH000412: Hibernate Core {5.0.9.Final}
+org.hibernate.cfg.Environment 2017-11-03 12:31:06,354 -- INFO -- HHH000206: hibernate.properties not found
+org.hibernate.cfg.Environment 2017-11-03 12:31:06,356 -- INFO -- HHH000021: Bytecode provider name : javassist
+org.hibernate.annotations.common.Version 2017-11-03 12:31:06,410 -- INFO -- HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+org.hibernate.dialect.Dialect 2017-11-03 12:31:06,570 -- INFO -- HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl 2017-11-03 12:31:06,595 -- INFO -- HHH000422: Disabling contextual LOB creation as connection was null

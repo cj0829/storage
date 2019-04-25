@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<!-- 权限过滤器 start -->
+	<bean id="filterChainProxy" class="org.csr.core.security.filter.FilterChainProxy">
+		<property name="exceptionChains">
+			<list>
+				<ref local="validationConstraintViolation" />
+				<ref local="validationObjectOptimisticLocking" />
+			</list>
+		</property>
+		<!-- 不需要验证的url -->
+		<property name="pathUnMatch">
+			<list>
+				<value>/**/**/**</value>
+			</list>
+		</property>
+		<!--登录页面 必填 -->
+		<property name="loginFormUrl" value="/index.jsp" />
+	</bean>
+
+	<!-- begin 异常处理链 -->
+	<bean id="jumpStrategy" class="org.csr.core.jump.SimpleJumpStrategy">
+		<constructor-arg name="defaultTargetUrl" value="/login.jsp" />
+	</bean>
+	
+	<bean id="validationConstraintViolation" class="org.csr.core.persistence.exception.ValidationConstraintViolation">
+		<constructor-arg name="returnHandler" ref="jumpStrategy"/>
+	</bean>
+	<bean id="validationObjectOptimisticLocking" class="org.csr.core.persistence.exception.ValidationObjectOptimisticLocking">
+		<constructor-arg name="returnHandler" ref="jumpStrategy"/>
+	</bean>
+</beans>
+
